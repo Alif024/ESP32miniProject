@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Copy IR Signal</title>
+  <link rel="icon" href="images/icons/ir_layer.png" type="image/png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Edit name -->
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h1 style="font-size: 3.5vw; text-align: center; margin-bottom: 1.5vw;">Chane Name Signal</h1>
+      <p>Number IR Signal</p>
+      <input type="text" id="NumberSignal" placeholder="ใส่หมายเลขของสัญญาณ">
+      <p>IR Signal Name</p>
+      <input type="text" id="NameSignal" placeholder="ใส่ชื่อที่ต้องการเปลี่ยน">
+      <button id="submitBtn" class="button rounded" style="margin-top: 1vw;">Submit</button>
+    </div>
+  </div>
+  <!-- Edit name -->
+
+  <!--open Table -->
+  <div style="margin: 1vw;">
+    <div class="row">
+      <div class="col-md-8" style="width: 100%;">
+        <div style="margin-bottom: 1vw; text-align: center;">
+          <h1 style="font-size: 3vw;">IR Signal Data Table</h1>
+          <input class="form-control" id="myInput" type="text" placeholder="Search.." style="font-size: 1.5vw;">
+        </div>
+        <table class="table table-bordered" style="font-size: 1.6vw; margin-bottom: 1.5vw;">
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>IR Raw Data Type</th>
+              <th>Distance Width Timing Info</th>
+              <th>Number Of Bits</th>
+              <th>Signal Name</th>
+            </tr>
+          </thead>
+          <tbody id="tableData"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="table-name-btn" style="display: flex; justify-content: end;">
+      <button class="button rounded" id="openModalBtn">Edit Name</button>
+    </div>
+  </div>
+  <!-- close Table -->
+
+  <script type="module" src="scripts.js"></script>
+</body>
+
+</html>

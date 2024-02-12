@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+th,
+td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.no-txt-center {
+  text-align: left;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #f7f7f7;
+}
+
+
+button {
+  display: inline-block;
+  padding: 1vw 2vw;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.6vw;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+
+.rounded {
+  border-radius: 20px;
+  border: 0.3vw solid #9b59b6;
+  color: #9b59b6;
+  background-color: #fff;
+}
+
+.rounded:hover {
+  background-color: #9b59b6;
+  color: #fff;
+}
+
+.clicked {
+  transform: scale(0.9);
+}
+
+.modal {
+  display: none;
+  /* อยู่ตรึงกับหน้าจอ */
+  z-index: 1;
+  /* อยู่บนสุด */
+  left: 0;
+  top: 0;
+  width: 100vw;
+  /* กว้างทั้งหน้าจอ */
+  height: 100svh;
+  /* สูงทั้งหน้าจอ */
+  background-color: rgb(0, 0, 0);
+  /* พื้นหลังโปร่งใส */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* พื้นหลังสีดำโปร่งใสเล็กน้อย */
+  justify-content: center;
+}
+
+.modal-content {
+  display: flex;
+  position: relative;
+  background-color: #fefefe;
+  /* 15% จากด้านบนและกึ่งกลางแนวนอน */
+  padding: 2vw;
+  border: 1px solid #888;
+  width: 80%;
+  margin: auto 0;
+  /* กว้าง 80% ของหน้าจอ */
+
+}
+
+.modal-content input {
+  margin-bottom: 1.5vw;
+  font-size: 1.6vw;
+  padding: 0.5vw 2vw;
+}
+
+.modal-content p {
+  margin-bottom: 0;
+  font-size: 1.6vw;
+  font-weight: bold;
+}
+
+.close {
+  margin-top: -4vw;
+  padding: 2vw;
+  position: absolute;
+  right: 0;
+  color: #aaa;
+  font-size: 3vw;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
