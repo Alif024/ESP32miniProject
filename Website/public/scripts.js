@@ -32,12 +32,13 @@ function updateNameSignal(NumberSignal, NameSignal) {
 
 const starCountRef = ref(database, 'IR-Signal');
 const RawDataActivate = ref(database, 'IR-Signal-Choose/IRRawData');
+const NameActivate = ref(database, 'IR-Signal-Choose/Name');
 document.addEventListener("DOMContentLoaded", function () {
   onValue(starCountRef, (snapshot) => {
     const data = snapshot.val();
-    // console.log(data);
+    console.log(data);
     const tableData = document.getElementById("tableData");
-    const size = Object.keys(data).length;
+    // const size = Object.keys(data).length;
     let count = 1;
     while (tableData.firstChild) {
       tableData.removeChild(tableData.firstChild);
@@ -59,6 +60,30 @@ document.addEventListener("DOMContentLoaded", function () {
       tableData.appendChild(row);
       count++;
     });
+
+    // Assuming you have a <select> element with id 'mySelect'
+    const selectElement = document.getElementById('mySelect');
+
+    // Clear existing options
+    selectElement.innerHTML = '';
+
+    // Add a disabled option as the first option
+    const firstOption = document.createElement('option');
+    firstOption.value = '';
+    firstOption.disabled = true;
+    firstOption.selected = true;
+    firstOption.textContent = '-- เลือกสัญญาณที่ต้องการใช้ --';
+    selectElement.appendChild(firstOption);
+
+    // Add new options from the object
+    Object.keys(data).forEach(key => {
+      const option = document.createElement('option');
+      option.value = key; // Using the key as the value for the option
+      var textContent = data[key].IRRawData; // Using the 'Name' property as the text content for the option
+      textContent = "0x" + textContent.toString(16).toUpperCase();
+      option.textContent = textContent; // Using the 'Name' property as the text content for the option
+      selectElement.appendChild(option);
+    });
   });
 
   onValue(RawDataActivate, (snapshot) => {
@@ -66,6 +91,17 @@ document.addEventListener("DOMContentLoaded", function () {
     // console.log(data);
     const RawDataActivate = document.getElementById("RawDataActivate");
     RawDataActivate.innerText = "0x" + RawData.toString(16).toUpperCase();
+  });
+
+  onValue(NameActivate, (snapshot) => {
+    const Name = snapshot.val();
+    const ActivateSignalName = document.getElementById("ActivateSignalName");
+    if (Name) {
+      // console.log(data);
+      ActivateSignalName.innerText = Name;
+    } else {
+      ActivateSignalName.innerText = "Copy Signal";
+    }
   });
 
 });
@@ -123,6 +159,43 @@ document.querySelector(".closeChangeSignal").onclick = function () {
   document.getElementById("popupChangeSignal").style.display = "none";
 }
 
+const submitBtnChangeSignalBtn = document.getElementById('submitChangeSignalBtn');
+submitBtnChangeSignalBtn.onclick = () => {
+  // Get the select element by its ID
+  const selectElement = document.getElementById('mySelect');
+  // Get the value of the selected option
+  const selectedValue = selectElement.value;
+  // Log the value to the console
+  // console.log(selectedValue);
+  document.getElementById("popupChangeSignal").style.display = "none";
+
+  const path = ref(database, "IR-Signal/" + selectedValue);
+  onValue(path, (snapshot) => {
+    const data = snapshot.val();
+    handleData(data);
+  });
+
+  function handleData(data) {
+    var DistanceWidthTimingInfo = data.DistanceWidthTimingInfo;
+    var IRRawData = data.IRRawData;
+    var NumberOfBits = data.NumberOfBits;
+    var Name = data.Name;
+
+    // Create an object with the data you always want to set
+    var dataToSet = {
+      DistanceWidthTimingInfo: DistanceWidthTimingInfo,
+      IRRawData: IRRawData,
+      NumberOfBits: NumberOfBits
+    };
+
+    // Only add Name to the object if it exists
+    if (Name) {
+      dataToSet.Name = Name;
+    }
+
+    set(ref(database, "IR-Signal-Choose"), dataToSet);
+  }
+}
 
 // test send data
 // function writeUserData(IR_Signal, DistanceWidthTimingInfo, NumberOfBits) {
@@ -159,4 +232,6 @@ $(document).ready(function () {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
     });
   });
+
+  $('#mySelect').select2();
 });

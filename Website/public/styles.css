@@ -140,20 +140,11 @@ button {
   padding: 2vw;
   border: 1px solid #888;
   width: 80%;
-  margin: auto 0;
+  margin: 0;
+  margin-bottom: auto;
+  margin-top: 3vw;
+
   /* กว้าง 80% ของหน้าจอ */
-}
-
-.popup-content input {
-  margin-bottom: 1.5vw;
-  font-size: 1.6vw;
-  padding: 0.5vw 2vw;
-}
-
-.popup-content p {
-  margin-bottom: 0;
-  font-size: 1.6vw;
-  font-weight: bold;
 }
 
 
@@ -180,4 +171,75 @@ button {
   padding-top: 1.5vw;
   padding-bottom: 2vw;
   border-radius: 2vw;
+}
+
+select#mySelect option {
+  font-size: 1.6vw;
+}
+
+.select2-container--default .select2-selection--single {
+  height: 3.8vw;
+  /* Adjust to match your button height */
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  line-height: 3.8vw;
+  /* Adjust to match your button height */
+  font-size: 1.6vw;
+  /* Adjust to match your desired font-size */
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 3.8vw;
+  /* Adjust to match your button height */
+}
+
+.select2-container--default .select2-results__option {
+  font-size: 1.6vw;
+  /* Change this value to match the size of the select options */
+}
+
+#mySelect {
+  font-size: 1.6vw;
+  /* Change this value to the size you want */
+}
+
+/* Adjust the size of the label */
+label[for="mySelect"] {
+  font-size: 1.6vw;
+  /* Change this value to the size you want */
+  display: block;
+  /* Optional: ensures the label is on its own line */
+  margin-bottom: 0.8vw;
+  /* Optional: adds some space below the label */
+}
+
+.select2-container--default .select2-search--dropdown .select2-search__field {
+  font-size: 1.6vw;
+  /* Change the font size as needed */
+  padding: 0.8vw;
+  /* Adjust the padding to change the height */
+  border: 1px solid #000;
+  /* Adjust the border as desired */
+}
+
+/* To target the search box within the Select2 dropdown */
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  font-size: 1.6vw;
+  /* Match the font size of the search box */
+  line-height: 1.5;
+  /* Adjust the line height as necessary */
+  padding: 0.8vw;
+  /* Adjust the padding to change the height */
+}
+
+input[type="text"] {
+  font-size: 1.6vw;
+  /* Change the font size as needed */
+  padding: 0.8vw;
+  /* Adjust the padding to change the height */
+  border: 1px solid #000;
+  /* Adjust the border as desired */
+  width: 100%;
+  /* Optional: make the input stretch to full container width */
 }
