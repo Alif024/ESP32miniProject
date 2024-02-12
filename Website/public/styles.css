@@ -75,7 +75,7 @@ button {
   width: 80%;
   margin: auto 0;
   /* กว้าง 80% ของหน้าจอ */
-
+  border-radius: 1vw;
 }
 
 .modal-content input {
@@ -105,4 +105,79 @@ button {
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+
+.IRSNcontent p {
+  font-size: 1.6vw;
+}
+
+#popupChangeSignal {
+  position: fixed;
+  /* อยู่ตรึงกับหน้าจอ */
+  z-index: 1;
+  /* อยู่บนสุด */
+  left: 0;
+  top: 0;
+  width: 100vw;
+  /* กว้างทั้งหน้าจอ */
+  height: 100svh;
+  /* สูงทั้งหน้าจอ */
+  background-color: rgb(0, 0, 0);
+  /* พื้นหลังโปร่งใส */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* พื้นหลังสีดำโปร่งใสเล็กน้อย */
+  justify-content: center;
+}
+
+.popup-content {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  background-color: #fefefe;
+  border-radius: 1vw;
+  /* 15% จากด้านบนและกึ่งกลางแนวนอน */
+  padding: 2vw;
+  border: 1px solid #888;
+  width: 80%;
+  margin: auto 0;
+  /* กว้าง 80% ของหน้าจอ */
+}
+
+.popup-content input {
+  margin-bottom: 1.5vw;
+  font-size: 1.6vw;
+  padding: 0.5vw 2vw;
+}
+
+.popup-content p {
+  margin-bottom: 0;
+  font-size: 1.6vw;
+  font-weight: bold;
+}
+
+
+.closeChangeSignal {
+  margin-top: -4vw;
+  padding: 2vw;
+  position: absolute;
+  right: 0;
+  color: #aaa;
+  font-size: 3vw;
+  font-weight: bold;
+}
+
+.closeChangeSignal:hover,
+.closeChangeSignal:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.card-ir-activate {
+  width: 60%;
+  border: 1px solid #888888ab;
+  padding-top: 1.5vw;
+  padding-bottom: 2vw;
+  border-radius: 2vw;
 }

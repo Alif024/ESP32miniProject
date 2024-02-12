@@ -15,6 +15,41 @@
 </head>
 
 <body>
+  <!-- Change Signal -->
+  <div id="popupChangeSignal" style="display:none;">
+    <div class="popup-content">
+      <span class="closeChangeSignal">&times;</span>
+      <h2 style="text-align: center; font-size: 3.5vw; margin-bottom: 1.5vw;">Change Signal</h2>
+      <p>Number IR Signal</p>
+      <input type="text" id="NumberChangeSignal" placeholder="ใส่หมายเลขของสัญญาณ">
+      <p>IR Signal Name</p>
+      <input type="text" id="NameChangeSignal" placeholder="ใส่ชื่อที่ต้องการเปลี่ยน">
+      <button id="submitChangeSignalBtn" class="button rounded" style="margin-top: 1vw;">Submit</button>
+    </div>
+  </div>
+  <!-- Change Signal -->
+
+
+  <!-- IR Signal NOW -->
+  <div class="IR-Signal-NOW"
+    style="display: flex; flex-direction: column; margin-top: 2vw; margin-bottom: 5vw; align-items: center;">
+    <h1 style="text-align: center; font-size: 3vw; margin-bottom: 2vw;">IR Signal NOW Activate</h1>
+    <div class="card-ir-activate">
+      <h1 id="NameSignal" style="text-align: center; font-size: 2.5vw;">Copy Signal</h1>
+      <div class="IRSNcontent" style="padding: 0 2vw;">
+        <div style="display: flex; justify-content: center;">
+          <p style="margin-right: 0.5vw;">IR Raw Data Type : </p>
+          <p id="RawDataActivate" style="font-weight: bold; font-size: 1.6vw; color: green;">data</p>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: center;">
+        <button class="button rounded" id="btnChangeSignal">Change Activate Signal</button>
+      </div>
+    </div>
+  </div>
+  <!-- IR Signal NOW -->
+
+
   <!-- Edit name -->
   <div id="myModal" class="modal">
     <div class="modal-content">
@@ -34,7 +69,13 @@
     <div class="row">
       <div class="col-md-8" style="width: 100%;">
         <div style="margin-bottom: 1vw; text-align: center;">
-          <h1 style="font-size: 3vw;">IR Signal Data Table</h1>
+          <div
+            style="display: flex; justify-content: space-between; position: relative; align-items: center; padding: 2vw 0;">
+            <h1 style="margin: 0 auto; font-size: 3vw;">IR Signal Data Table</h1>
+            <div class="table-name-btn" style="position: absolute; right: 0; margin-right: 2vw;">
+              <button class="button rounded" id="openModalBtn">Edit Name</button>
+            </div>
+          </div>
           <input class="form-control" id="myInput" type="text" placeholder="Search.." style="font-size: 1.5vw;">
         </div>
         <table class="table table-bordered" style="font-size: 1.6vw; margin-bottom: 1.5vw;">
@@ -50,10 +91,6 @@
           <tbody id="tableData"></tbody>
         </table>
       </div>
-    </div>
-
-    <div class="table-name-btn" style="display: flex; justify-content: end;">
-      <button class="button rounded" id="openModalBtn">Edit Name</button>
     </div>
   </div>
   <!-- close Table -->

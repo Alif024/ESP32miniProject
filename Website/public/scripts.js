@@ -31,31 +31,40 @@ function updateNameSignal(NumberSignal, NameSignal) {
 
 
 const starCountRef = ref(database, 'IR-Signal');
+const RawDataActivate = ref(database, 'IR-Signal-Choose/IRRawData');
 document.addEventListener("DOMContentLoaded", function () {
-  onValue(starCountRef, (snapshot) => {
-    const data = snapshot.val();
+  // onValue(starCountRef, (snapshot) => {
+  //   const data = snapshot.val();
+  //   // console.log(data);
+  //   const tableData = document.getElementById("tableData");
+  //   const size = Object.keys(data).length;
+  //   let count = 1;
+  //   while (tableData.firstChild) {
+  //     tableData.removeChild(tableData.firstChild);
+  //   }
+  //   Object.keys(data).forEach((key) => {
+  //     const row = document.createElement("tr");
+  //     const info = data[key];
+  //     const distanceWidthTimingInfo = info.DistanceWidthTimingInfo.join(", ");
+  //     row.innerHTML = `
+  //       <td>${count}</td>
+  //       <td id="Raw-Data-${count}">${key}</td>
+  //       <td class="no-txt-center">${distanceWidthTimingInfo}</td>
+  //       <td>${info.NumberOfBits}</td>
+  //       <td id="NameNo.${count}">${info.Name || ''}</td>
+  //     `;
+  //     tableData.appendChild(row);
+  //     count++;
+  //   });
+  // });
+
+  onValue(RawDataActivate, (snapshot) => {
+    const RawData = snapshot.val();
     // console.log(data);
-    const tableData = document.getElementById("tableData");
-    const size = Object.keys(data).length;
-    let count = 1;
-    while (tableData.firstChild) {
-      tableData.removeChild(tableData.firstChild);
-    }
-    Object.keys(data).forEach((key) => {
-      const row = document.createElement("tr");
-      const info = data[key];
-      const distanceWidthTimingInfo = info.DistanceWidthTimingInfo.join(", ");
-      row.innerHTML = `
-        <td>${count}</td>
-        <td id="Raw-Data-${count}">${key}</td>
-        <td class="no-txt-center">${distanceWidthTimingInfo}</td>
-        <td>${info.NumberOfBits}</td>
-        <td id="NameNo.${count}">${info.Name || ''}</td>
-      `;
-      tableData.appendChild(row);
-      count++;
-    });
+    const RawDataActivate = document.getElementById("RawDataActivate");
+    RawDataActivate.innerText = "0x" + RawData.toString(16).toUpperCase();
   });
+
 });
 
 // รับองค์ประกอบต่างๆ
@@ -83,6 +92,9 @@ window.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
+  if (event.target == document.getElementById("popupChangeSignal")) {
+    document.getElementById("popupChangeSignal").style.display = "none";
+  }
 }
 
 // จัดการกับการส่งข้อมูล
@@ -97,6 +109,15 @@ submitBtn.onclick = function () {
     modal.style.display = "none";
     updateNameSignal(NumberSignal, NameSignal);
   }, 200);
+}
+
+
+document.getElementById("btnChangeSignal").onclick = function () {
+  document.getElementById("popupChangeSignal").style.display = "flex";
+}
+
+document.querySelector(".closeChangeSignal").onclick = function () {
+  document.getElementById("popupChangeSignal").style.display = "none";
 }
 
 
