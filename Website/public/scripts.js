@@ -23,40 +23,43 @@ const database = getDatabase(app);
 
 function updateNameSignal(NumberSignal, NameSignal) {
   var rawDataText = "IR-Signal/" + document.getElementById("Raw-Data-" + NumberSignal).textContent;
-  update(ref(database, rawDataText), {
-    Name: NameSignal
-  });
-  console.log(rawDataText);
+  var updates = {};
+  updates['/Name'] = NameSignal;
+  update(ref(database, rawDataText), updates);
+  // console.log(rawDataText, NameSignal);
 }
 
 
 const starCountRef = ref(database, 'IR-Signal');
 const RawDataActivate = ref(database, 'IR-Signal-Choose/IRRawData');
 document.addEventListener("DOMContentLoaded", function () {
-  // onValue(starCountRef, (snapshot) => {
-  //   const data = snapshot.val();
-  //   // console.log(data);
-  //   const tableData = document.getElementById("tableData");
-  //   const size = Object.keys(data).length;
-  //   let count = 1;
-  //   while (tableData.firstChild) {
-  //     tableData.removeChild(tableData.firstChild);
-  //   }
-  //   Object.keys(data).forEach((key) => {
-  //     const row = document.createElement("tr");
-  //     const info = data[key];
-  //     const distanceWidthTimingInfo = info.DistanceWidthTimingInfo.join(", ");
-  //     row.innerHTML = `
-  //       <td>${count}</td>
-  //       <td id="Raw-Data-${count}">${key}</td>
-  //       <td class="no-txt-center">${distanceWidthTimingInfo}</td>
-  //       <td>${info.NumberOfBits}</td>
-  //       <td id="NameNo.${count}">${info.Name || ''}</td>
-  //     `;
-  //     tableData.appendChild(row);
-  //     count++;
-  //   });
-  // });
+  onValue(starCountRef, (snapshot) => {
+    const data = snapshot.val();
+    // console.log(data);
+    const tableData = document.getElementById("tableData");
+    const size = Object.keys(data).length;
+    let count = 1;
+    while (tableData.firstChild) {
+      tableData.removeChild(tableData.firstChild);
+    }
+    Object.keys(data).forEach((key) => {
+      const row = document.createElement("tr");
+      const info = data[key];
+      // Check if DistanceWidthTimingInfo is defined and is an array before calling join
+      const distanceWidthTimingInfo = Array.isArray(info.DistanceWidthTimingInfo)
+        ? info.DistanceWidthTimingInfo.join(", ")
+        : "N/A";  // You can replace "N/A" with a default message or handling of your choice
+      row.innerHTML = `
+        <td>${count}</td>
+        <td id="Raw-Data-${count}">${key}</td>
+        <td class="no-txt-center">${distanceWidthTimingInfo}</td>
+        <td>${info.NumberOfBits}</td>
+        <td id="NameNo.${count}">${info.Name || ''}</td>
+      `;
+      tableData.appendChild(row);
+      count++;
+    });
+  });
 
   onValue(RawDataActivate, (snapshot) => {
     const RawData = snapshot.val();
@@ -107,8 +110,8 @@ submitBtn.onclick = function () {
   setTimeout(() => {
     submitBtn.classList.remove('clicked'); // ลบคลาสหลังจาก 200 ms
     modal.style.display = "none";
-    updateNameSignal(NumberSignal, NameSignal);
   }, 200);
+  updateNameSignal(NumberSignal, NameSignal);
 }
 
 
