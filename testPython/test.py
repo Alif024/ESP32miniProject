@@ -28,8 +28,11 @@ db = firebase.database()
 # else:
 #     print("No data found")
 
-data = [9050, 4550, 600, 1650, 600, 500]
-db.child("IR-Signal-Choose").child("DistanceWidthTimingInfo").set(data)
-db.child("IR-Signal-Choose").child("IRRawData").set(2067066130)
-db.child("IR-Signal-Choose").child("Name").set("")
-db.child("IR-Signal-Choose").child("NumberOfBits").set(44)
+path = "0xB34C6E00"
+a = db.child("IR-Signal").child(path).child("DistanceWidthTimingInfo").get()
+b = db.child("IR-Signal").child(path).child("IRRawData").get()
+c = db.child("IR-Signal").child(path).child("NumberOfBits").get()
+
+db.child("IR-Signal-Choose").child("DistanceWidthTimingInfo").set(a.val())
+db.child("IR-Signal-Choose").child("IRRawData").set(b.val())
+db.child("IR-Signal-Choose").child("NumberOfBits").set(c.val())

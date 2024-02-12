@@ -55,11 +55,11 @@ void loop() {
     // Firebase.RTDB.setInt(&fbdo, F("/test/int"), decimalValue);
 
     // ส่ง sendDistanceWidthTiming ไปใน database
-    FirebaseJsonArray sendDistanceWidthTiming;
-    for (int i = 0; i < arraySize; i++) {
-      sendDistanceWidthTiming.add(DistanceWidthTimingInfo[i]);
-    }
-    Firebase.RTDB.setArray(&fbdo, "/test/array", &sendDistanceWidthTiming);
+    // FirebaseJsonArray sendDistanceWidthTiming;
+    // for (int i = 0; i < arraySize; i++) {
+    //   sendDistanceWidthTiming.add(DistanceWidthTimingInfo[i]);
+    // }
+    // Firebase.RTDB.setArray(&fbdo, "/test/array", &sendDistanceWidthTiming);
 
     // ดึง IRRawData ที่เป็น command จาก database
     Firebase.RTDB.getInt(&fbdo, F("/IR-Signal-Choose/IRRawData"), &decimalValue);
