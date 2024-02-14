@@ -45,7 +45,7 @@ String TimingInfoJsonStrFB;
 
 #include <IRremote.hpp>
 
-#define SEND_BUTTON_PIN APPLICATION_PIN
+#define SEND_BUTTON_PIN 13
 
 #define DELAY_BETWEEN_REPEATS_MILLIS 70
 
